@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TODO APP</title>
+    <style>
+        body {
+            background-image: url('images/todobg.jpg');
+            background-size: 400px;
+            background-position: bottom right;
+            background-repeat: no-repeat;
+
+        }
+
+        #main {
+            height: 550px;
+            width: 500px;
+            border-radius: 15px;
+            margin: 30px auto;
+            padding: 30px;
+            border: 1px solid black;
+            text-align: center;
+
+        }
+
+        #header {
+            color: rgb(91, 241, 91);
+            font-family: verdana;
+        }
+
+        #heading {
+            color: rgb(247, 153, 76)
+        }
+
+        #nooftasks {
+            color: rgb(248, 115, 137);
+            font-family: sans-serif;
+        }
+
+        #addbutton {
+            margin: 0px 30px;
+
+        }
+
+        .listtask {
+            text-align: justify;
+            padding: 0px 0px 0px 30px;
+            margin-bottom: 5px;
+            font-size: 20px;
+            font-family: verdana;
+            background-color: rgb(209, 214, 209);
+
+        }
+
+        #maininput {
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        #addbutton {
+            border-radius: 5px;
+            padding: 5px;
+            background-color: rgb(156, 252, 176);
+        }
+
+        ul li.checked {
+            background: rgb(188, 248, 149);
+            color: burlywood;
+            text-decoration: line-through;
+            list-style-type: square ;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let maindiv = document.createElement("div");
+        maindiv.id = "main";
+        document.body.appendChild(maindiv);
+        let h3 = document.createElement("h3");
+        maindiv.appendChild(h3);
+        h3.id = "heading";
+        h3.innerHTML = "Add TODO tasks and make your day Productive";
+        let h2 = document.createElement("h2");
+        maindiv.appendChild(h2);
+        h2.innerHTML = "List of todo tasks";
+        h2.id = "header";
+        let h4 = document.createElement("h4");
+        maindiv.appendChild(h4);
+        h4.innerHTML = "Number of tasks are: 4";
+        h4.id = "nooftasks";
+        let inputbox = document.createElement("input");
+        inputbox.id = "maininput";
+        maindiv.appendChild(inputbox);
+        let btn = document.createElement("button");
+        btn.id = "addbutton";
+        let txt = document.createTextNode("ADD TASK");
+        btn.appendChild(txt);
+        maindiv.appendChild(btn);
+        let ulist = document.createElement("ul");
+        ulist.id = "unorderedlist";
+        maindiv.appendChild(ulist);
+        //to add fixed tasks
+        var li = document.createElement("li");
+        li.className = "listtask";
+        li.innerHTML = "Breakfast";
+        ulist.appendChild(li);
+        var li = document.createElement("li");
+        li.className = "listtask";
+        li.innerHTML = "Go To Office";
+        ulist.appendChild(li);
+        var li = document.createElement("li");
+        li.className = "listtask";
+        li.innerHTML = "Attend Session";
+        ulist.appendChild(li);
+        var li = document.createElement("li");
+        li.className = "listtask";
+        li.innerHTML = "Submit Task";
+        ulist.appendChild(li);
+        btn.addEventListener("click", addTask);
+        let elements = document.getElementsByTagName("li");
+        //to add done task to page
+        var list = document.querySelector('ul');
+        list.addEventListener('click', function (ev) {
+            if (ev.target.tagName === 'LI') {
+                ev.target.classList.toggle('checked');
+            }
+        }, false);
+        //to add new task
+        function addTask() {
+            var tasktoadd = document.getElementById("maininput").value;
+            if (tasktoadd != "") {
+                var li = document.createElement("li");
+                li.className = "listtask";
+                ulist.appendChild(li);
+                li.innerHTML = tasktoadd;
+                var ele = document.getElementsByTagName("li");
+                document.getElementById("nooftasks").innerHTML = "Number of tasks are: " + ele.length;
+                document.getElementById("maininput").value = "";
+            }
+            else {
+                alert("Enter Task To Be Add");
+            }
+
+        }
+    </script>
+</body>
+
+</html>
